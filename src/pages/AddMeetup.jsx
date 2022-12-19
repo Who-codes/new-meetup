@@ -7,10 +7,11 @@ import {
 } from "@progress/kendo-react-form";
 import { Input, TextArea, TextBox } from "@progress/kendo-react-inputs";
 import { Label } from "@progress/kendo-react-labels";
+import { push, ref, set } from "firebase/database";
 import { doc, setDoc } from "firebase/firestore";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../firebaseConfig";
+import { database, db } from "../firebaseConfig";
 import { useAuthContext } from "../utils/authContext";
 
 const AddMeetup = () => {
@@ -19,12 +20,17 @@ const AddMeetup = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (dataItem) => {
-    const { title, imageUrl, description } = dataItem;
-    await setDoc(doc(db, "allPosts", "posts"), {
-      title,
-      imageUrl,
-      description,
-    });
+    await fetch(
+      "https://meetup-bd2f7-default-rtdb.asia-southeast1.firebasedatabase.app/meetups.json",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "apllication/json",
+        },
+        body: JSON.stringify(dataItem),
+      }
+    );
+
     navigate("/");
   };
 
@@ -59,6 +65,7 @@ const AddMeetup = () => {
             <fieldset className="k-form-fieldset">
               <Field name="title" component={Input} label={"Title"} />
               <Field name="imageUrl" component={Input} label={"Image URL"} />
+              <Field name="location" component={Input} label={"Location"} />
               <Field
                 id="description"
                 name="description"
