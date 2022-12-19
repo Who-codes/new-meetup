@@ -30,8 +30,7 @@ const Signin = () => {
   };
 
   const handleSubmit = (dataItem) => {
-    console.log(dataItem);
-    console.log(import.meta.env.VITE_APIKEY);
+    signin(dataItem.email, dataItem.password);
   };
 
   return (

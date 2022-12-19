@@ -6,8 +6,10 @@ import {
 } from "@progress/kendo-react-layout";
 import { Link } from "react-router-dom";
 import React from "react";
+import { useAuthContext } from "../utils/authContext";
 
 const NavBar = () => {
+  const { user } = useAuthContext();
   return (
     <header>
       <AppBar themeColor="dark" className="k-px-10 k-py-2">
@@ -24,15 +26,13 @@ const NavBar = () => {
             Add Meetup
           </Link>
 
-          <Link to={"/"}>
-            <Avatar type="image">
-              <img
-                src={
-                  "https://demos.telerik.com/kendo-ui/content/web/Customers/RICSU.jpg"
-                }
-              />
-            </Avatar>
-          </Link>
+          {user && (
+            <Link to={"/"}>
+              <Avatar type="image">
+                <img src={user.photoURL} />
+              </Avatar>
+            </Link>
+          )}
         </AppBarSection>
       </AppBar>
     </header>

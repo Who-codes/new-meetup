@@ -30,12 +30,7 @@ const Signup = () => {
 
   const handleSignup = (dataItem) => {
     console.log(dataItem);
-    signup(
-      dataItem.email,
-      dataItem.password,
-      dataItem.displayName,
-      dataItem.photoUrl
-    );
+    signup(dataItem.email, dataItem.password, dataItem.name, dataItem.photoUrl);
   };
 
   return (
