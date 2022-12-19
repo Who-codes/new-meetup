@@ -6,10 +6,9 @@ import AllMeetups from "./pages/AllMeetups";
 import AddMeetup from "./pages/AddMeetup";
 import Signin from "./pages/Signin";
 import { ProtectedRoutes } from "./utils/ProtectedRoutes";
+import Signup from "./pages/Signup";
 
 const App = () => {
-  const [isLogedIn, setIsLogedIn] = useState(false);
-
   return (
     <>
       <NavBar />
@@ -19,6 +18,7 @@ const App = () => {
           <Route path="/add-meetup" element={<AddMeetup />} />
         </Route>
         <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </>
   );
